@@ -18,7 +18,6 @@ test.beforeEach(async({page}) => {
 
         //select the sort option Newest
         await questionsPage.locator('.js-gps-track', {hasText:"Newest"}).click()
-        // await page.locator('#mainbar', {hasText: "All Questions"}).locator('.js-gps-track', {hasText:"Newest"}).click()
 
         //filter for the tag javascript
         await questionsPage.getByRole('button', {name: "Filter"}).click()
