@@ -34,9 +34,22 @@ While taking the course and applying for jobs, I came across a job that required
 ### The Process
 I started out taking what I now feel was the wrong initial steps for this project. I started the test file and then multiple page object files to support classes without yet knowing what those classes needed to be. I think this was because creating and using classes was the most recent thing I learned from the class. However, the files had errors and no links to the actual tests yet. Once I addressed the errors in the initial classes I created, I decided to change course and get the basic test code created.
 The next step with the initial test code was to write it with minimal constants and no use of page object classes. As I wrote the code I could see where the code could be cleaned up by use of additional constants.
-*More to come*
 
+-Step 1 - Setup intial framework
+-Step 2 - Create code to access the URL, select the Questions, select filter and sorting.
+-Step 3 - Extract the data from the first 50 records.
+*Done to this point*
+-Step 4 - Validate the information for the first 50 records.
+-Step 5 - Change to get the information frmo first 00 records. (note that this may be easier to get all records before validating the data.
+-Step 6 - Clean up the code and incorporate page Objects as appropriate.
 
+### Notes and observations
+Steps 1 & 2 were simple and I was quickly able to resolve the errors within the files in the page-objects folder. 
 
-
-
+Step 3 was hard and after about 1/2 day, I decided to see if ChatGPT could help.  It was able to give me the context of how to do it and I incorporated the code from ChatGPT into my code. However I had to ask for additional clarifications and refine my question. 
+-The first result provided me with code that returned one record.
+-I adjusted the question and got code that returned 4 questions.
+-The third adjustment to the question addressed the need to scrol down to get all 50 questions.
+-In this process I had to ask where 'querySelector' came from and found out it comes from the DOM. I learned something new there.
+-After finally getting the data from the first 50 questions I realized that the time stamp information was being returned as blank. After some investigation (without ChatGPT) I was able to adjust the code to get the time stamp.
+At this point, step 3 was done.
