@@ -36,23 +36,24 @@ I started out taking what I now feel was the wrong initial steps for this projec
 The next step with the initial test code was to write it with minimal constants and no use of page object classes. As I wrote the code I could see where the code could be cleaned up by use of additional constants.
 
 **Planned Steps**
--Step 1 - Setup intial framework
 
--Step 2 - Create code to access the URL, select the Questions, select filter and sorting.
+Step 1 - Setup intial framework
 
--Step 3 - Extract the data from the first 50 records.
+Step 2 - Create code to access the URL, select the Questions, select filter and sorting.
 
--Step 4 - Validate the information for the first 50 records.
+Step 3 - Extract the data from the first 50 records.
+
+Step 4 - Validate the information for the first 50 records.
 
 *Done to this point*
 
--Step 5 - Change to get the information frmo first 100 records. (note that this may be easier to get all records before validating the data.
+Step 5 - Change to get the information frmo first 100 records. (note that this may be easier to get all records before validating the data.
 
--Step 6 - Clean up the code and incorporate page Objects as appropriate.
+Step 6 - Clean up the code and incorporate page Objects as appropriate.
 
--Step 7 - Add code to export extracted data to a text file. 
+Step 7 - Add code to export extracted data to a text file. 
 
--Step 8 - Add code to add a debug utility that will output information to the console when running in debug mode. 
+Step 8 - Add code to add a debug utility that will output information to the console when running in debug mode. 
 
 
 ### Notes and observations
