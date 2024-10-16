@@ -8,15 +8,12 @@ test.beforeEach(async({page}) => {
     if (await expect (CookieAcknowledgmentDialog).toBeVisible) {
         // await CookieAcknowledgmentDialog.locator('#onetrust-reject-all-handler').click()
         await page.getByRole('button', { name: 'Necessary cookies only' }).click();
-
     }
 })
 
 test('sort stackoverflow Questions', async({page}) => {
     // await page.locator('#nav-questions').click()
     await page.getByLabel('Primary').getByRole('link', { name: 'Questions' }).click();
-
-    // const questionsPage = await page.locator('#mainbar', {hasText: "All Questions"})
 
     //select the sort option Newest
     await page.getByRole('link', {name: "Newest"}).click()
@@ -29,8 +26,6 @@ test('sort stackoverflow Questions', async({page}) => {
     await page.locator('.s-expandable--content').getByRole('combobox').pressSequentially('javascript', {delay: 300})
     await page.getByRole('button', {name: 'Apply filter'}).click({timeout: 50000})
     await page.locator('.s-pagination--item', {hasText: '50'}).click()
-
-    console.log("Hello")
 
     // Wait for the questions to load
     await page.waitForSelector('.s-post-summary');
@@ -57,7 +52,7 @@ test('sort stackoverflow Questions', async({page}) => {
                 const votes = post.querySelector('.s-post-summary--stats-item span').innerText;
 
                 // Extract the timestamp of when the question was asked
-                const timestamp = post.querySelector('.s-user-card--time span').innerText
+                const timestamp = post.querySelector('.s-user-card--time span').title
 
                 return {
                     title,
@@ -69,10 +64,25 @@ test('sort stackoverflow Questions', async({page}) => {
         })
     }
 
-    // Log the extracted data
-    // console.log(questions);
+    // Log the extracted data - need to change this to output to a text file and to the console if in debug mode
     console.log(loadedQuestions)
 
+    for (const loadedQuestion  of loadedQuestions){
+        expect(loadedQuestion.tags).toContain('javascript')
+    }
+
+    for (let i = 1; i < loadedQuestions.length; i++) {
+        const currentTimestamp = new Date(loadedQuestions[i].timestamp);
+        const previousTimestamp = new Date(loadedQuestions[i - 1].timestamp);
+
+        //uncomment the following 2 lines for debugging
+        // console.log('Current time stamp = ' + currentTimestamp)
+        // console.log('Previous time stamp = ' + previousTimestamp)
+
+        // Assert that the current timestamp is older than the previous timestamp
+        expect(currentTimestamp <= previousTimestamp).toBeTruthy();
+    }
+
     //go to next page
-    await page.locator('[class="s-pagination--item js-pagination-item"]', {hasText: "Next"}).click()
+    // await page.locator('[class="s-pagination--item js-pagination-item"]', {hasText: "Next"}).click()
 })

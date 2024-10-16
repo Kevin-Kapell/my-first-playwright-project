@@ -1,4 +1,4 @@
-   # My First Playwright Project
+# My First Playwright Project
 
    **WORK IN PROGRESS**
 
@@ -38,10 +38,12 @@ The next step with the initial test code was to write it with minimal constants 
 -Step 1 - Setup intial framework
 -Step 2 - Create code to access the URL, select the Questions, select filter and sorting.
 -Step 3 - Extract the data from the first 50 records.
-*Done to this point*
 -Step 4 - Validate the information for the first 50 records.
--Step 5 - Change to get the information frmo first 00 records. (note that this may be easier to get all records before validating the data.
+*Done to this point*
+-Step 5 - Change to get the information frmo first 100 records. (note that this may be easier to get all records before validating the data.
 -Step 6 - Clean up the code and incorporate page Objects as appropriate.
+-Step 7 - Add code to export extracted data to a text file. 
+-Step 8 - Add code to add a debug utility that will output information to the console when running in debug mode. 
 
 ### Notes and observations
 Steps 1 & 2 were simple and I was quickly able to resolve the errors within the files in the page-objects folder. 
@@ -53,3 +55,5 @@ Step 3 was hard and after about 1/2 day, I decided to see if ChatGPT could help.
 -In this process I had to ask where 'querySelector' came from and found out it comes from the DOM. I learned something new there.
 -After finally getting the data from the first 50 questions I realized that the time stamp information was being returned as blank. After some investigation (without ChatGPT) I was able to adjust the code to get the time stamp.
 At this point, step 3 was done.
+
+Step 4 wasn't too bad to accomplish. Used a combination of playwright documents and chatGPT in order to accomplish this step. While doing the work I decided that I need to add code to output the extracted data to a text file. I also have some debug lines that would be useful to output when in debug mode but are currently commented out. This resulted in me adding 2 more steps to this project.
