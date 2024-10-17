@@ -45,9 +45,9 @@ Step 3 - Extract the data from the first 50 records.
 
 Step 4 - Validate the information for the first 50 records.
 
-*Done to this point*
-
 Step 5 - Change to get the information frmo first 100 records. (note that this may be easier to get all records before validating the data.
+
+*Done to this point*
 
 Step 6 - Clean up the code and incorporate page Objects as appropriate.
 
@@ -56,15 +56,30 @@ Step 7 - Add code to export extracted data to a text file.
 Step 8 - Add code to add a debug utility that will output information to the console when running in debug mode. 
 
 
-### Notes and observations
+### Thoughts, notes, and observations
 Steps 1 & 2 were simple and I was quickly able to resolve the errors within the files in the page-objects folder. 
 
-Step 3 was hard and after about 1/2 day, I decided to see if ChatGPT could help.  It was able to give me the context of how to do it and I incorporated the code from ChatGPT into my code. However I had to ask for additional clarifications and refine my question. 
--The first result provided me with code that returned one record.
--I adjusted the question and got code that returned 4 questions.
--The third adjustment to the question addressed the need to scrol down to get all 50 questions.
--In this process I had to ask where 'querySelector' came from and found out it comes from the DOM. I learned something new there.
--After finally getting the data from the first 50 questions I realized that the time stamp information was being returned as blank. After some investigation (without ChatGPT) I was able to adjust the code to get the time stamp.
-At this point, step 3 was done.
 
-Step 4 wasn't too bad to accomplish. Used a combination of playwright documents and chatGPT in order to accomplish this step. While doing the work I decided that I need to add code to output the extracted data to a text file. I also have some debug lines that would be useful to output when in debug mode but are currently commented out. This resulted in me adding 2 more steps to this project.
+Step 3 was hard and after about 1/2 day, I decided to see if ChatGPT could help.  It was able to give me the context of how to do it and I incorporated the code from ChatGPT into my code. However I had to ask for additional clarifications and refine my question. 
+
+   *The first result provided me with code that returned one record.
+
+   *I adjusted the question and got code that returned 4 questions.
+
+   *The third adjustment to the question addressed the need to scrol down to get all 50 questions.
+
+   *In this process I had to ask where 'querySelector' came from and found out it comes from the DOM. I learned something new there.
+
+   *After finally getting the data from the first 50 questions I realized that the time stamp information was being returned as blank. After some investigation (without ChatGPT) I was able to adjust the code to get the time stamp.
+
+**At this point, step 3 was done.**
+
+
+Step 4 wasn't too bad to accomplish. i used a combination of playwright documents and chatGPT in order to accomplish this step. While doing the work I decided that I need to add code to output the extracted data to a text file. I also have some debug lines that would be useful to output when in debug mode but are currently commented out. This resulted in me adding 2 more steps to this project but I did not implement at this point.
+
+
+Step 5 appears to address the project objectives but the **CODE IS UGLY!!!!** And it does not output to file. That will be done in step 7.
+
+I made a copy of the code after step 5 and saved it as 'stackoverflowTestOriginal.spec.ts.
+
+If I was limited in time and had to move on in order to get a release out, this would be good enough; but for long term usage and maintenance it is not good. There are all kinds of improvements that could be made in order to exercise the filters and pagnation by using variables. I will try and keep that in mind as I clean up the code in the next steps.

@@ -11,7 +11,7 @@ test.beforeEach(async({page}) => {
     }
 })
 
-test('sort stackoverflow Questions', async({page}) => {
+test('Original sort stackoverflow Questions', async({page}) => {
     // await page.locator('#nav-questions').click()
     await page.getByLabel('Primary').getByRole('link', { name: 'Questions' }).click();
 
