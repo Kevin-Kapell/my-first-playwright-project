@@ -83,3 +83,5 @@ Step 5 appears to address the project objectives but the **CODE IS UGLY!!!!** An
 I made a copy of the code after step 5 and saved it as 'stackoverflowTestOriginal.spec.ts.
 
 If I was limited in time and had to move on in order to get a release out, this would be good enough; but for long term usage and maintenance it is not good. There are all kinds of improvements that could be made in order to exercise the filters and pagnation by using variables. I will try and keep that in mind as I clean up the code in the next steps.
+
+**Holding off on the next step for now. Changed direction to try and use an index.ts file to run the existing code.**
