@@ -1,16 +1,16 @@
-import {test,expect} from '@playwright/test';
+import { test,expect } from '@playwright/test';
 
-test.beforeEach(async({page}) => {
+test.beforeEach(async ({ page }) => {
     await page.goto('https://stackoverflow.com');
-
-    //address the accept cookies dialog
+    await page.waitForTimeout(2000);
+    // Address the accept cookies dialog
     const CookieAcknowledgmentDialog = page.locator('#onetrust-banner-sdk');
-    if (await expect (CookieAcknowledgmentDialog).toBeVisible) {
+    if (await CookieAcknowledgmentDialog.isVisible()) {
         await page.getByRole('button', { name: 'Necessary cookies only' }).click();
     }
 })
 
-test('sort stackoverflow Questions', async({page}) => {
+test('sort stackoverflow Questions copy', async({page}) => {
     await page.getByLabel('Primary').getByRole('link', { name: 'Questions' }).click();
 
     //select the sort option Newest
@@ -28,33 +28,44 @@ test('sort stackoverflow Questions', async({page}) => {
     // Wait for the questions to load
     await page.waitForSelector('.s-post-summary');
 
-    // Scroll and load more questions until we have at least 50
-    let loadedQuestions = [] //The array that will gather the questions
-    let temporaryQuestionsArray = [] //Temporary array to hold first 50 questions
-    let allLoadedQuestions = [] //Final array with all questions
+    // Define the type for questions
+    type Question = {
+        title: string;
+        tags: string[];
+        votes: string;
+        timestamp: string;
+    };
+
+    // Initialize arrays with the defined type
+    let loadedQuestions: Question[] = []; // The array that will gather the questions
+    let temporaryQuestionsArray: Question[] = []; // Temporary array to hold first 50 questions
+    let allLoadedQuestions: Question[] = []; // Final array with all questions
 
     while (loadedQuestions.length < 50) {
         // Scroll to the bottom of the page to load more questions
         await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 
         // Wait for additional questions to load
-        await page.waitForTimeout(2000);  // Adjust timeout as needed to allow for loading
+        await page.waitForTimeout(5000);  // Adjust timeout as needed to allow for loading
 
         // Extract the questions again after loading more
         loadedQuestions = await page.$$eval('.s-post-summary', (posts) => {
             return posts.map((post) => {
                 // Extract the title of the question
-                const title = post.querySelector('h3 a').innerText;
-
+                const titleElement = post.querySelector('h3 a') as HTMLElement | null;
+                const title = titleElement ? titleElement.innerText : '';
+        
                 // Extract the tags associated with the question
                 const tags = Array.from(post.querySelectorAll('.tags a')).map(tag => tag.innerText);
 
                 // Extract the number of votes
-                const votes = post.querySelector('.s-post-summary--stats-item span').innerText;
-
+                const votesElement = post.querySelector('.s-post-summary--stats-item span') as HTMLElement | null;
+                const votes = votesElement ? votesElement.innerText : '';
+        
                 // Extract the timestamp of when the question was asked
-                const timestamp = post.querySelector('.s-user-card--time span').title
-
+                const timestampElement = post.querySelector('.s-user-card--time span') as HTMLElement | null;
+                const timestamp = timestampElement ? timestampElement.title : '';
+        
                 return {
                     title,
                     tags,
@@ -83,16 +94,20 @@ test('sort stackoverflow Questions', async({page}) => {
         loadedQuestions = await page.$$eval('.s-post-summary', (posts) => {
             return posts.map((post) => {
                 // Extract the title of the question
-                const title = post.querySelector('h3 a').innerText;
+                const titleElement = post.querySelector('h3 a') as HTMLElement | null;
+                const title = titleElement ? titleElement.innerText : '';
 
                 // Extract the tags associated with the question
                 const tags = Array.from(post.querySelectorAll('.tags a')).map(tag => tag.innerText);
 
                 // Extract the number of votes
-                const votes = post.querySelector('.s-post-summary--stats-item span').innerText;
-
+                const votesElement = post.querySelector('.s-post-summary--stats-item span') as HTMLElement | null;
+                const votes = votesElement ? votesElement.innerText : '';
+        
                 // Extract the timestamp of when the question was asked
-                const timestamp = post.querySelector('.s-user-card--time span').title
+                const timestampElement = post.querySelector('.s-user-card--time span') as HTMLElement | null;
+                const timestamp = timestampElement ? timestampElement.title : '';
+
 
                 return {
                     title,
